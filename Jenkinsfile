@@ -51,8 +51,8 @@
  	}
 	
 node{
-	def GIT_URL = "https://github.com/maximusfederal/mytest-provider-svc.git"
-	def SERVICE_NAME = "mytest-provider-svc"
+	def GIT_URL = "https://github.com/maximusfederal/mydemo-provider-svc.git"
+	def SERVICE_NAME = "mydemo-provider-svc"
 	def SERVICE_VERSION = "1.0." + env.BUILD_NUMBER
 	def GIT_BRANCH = env.BRANCH_NAME
 	pfx = determineClusterPrefix(GIT_BRANCH)
@@ -226,7 +226,7 @@ node{
 	        try{ 
 	        	sh ('sleep 30')
 	        	withKubeConfig([credentialsId: token_K8s_cred, clusterName:cluster_name, serverUrl: cluster_url]) {
-    			 	appTestUrl = sh(script: "kubectl get svc --namespace apps mytest-gateway-svc --template '{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}'", returnStdout: true).trim()
+    			 	appTestUrl = sh(script: "kubectl get svc --namespace apps mydemo-gateway-svc --template '{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}'", returnStdout: true).trim()
     				println "TEST URL as env ${appTestUrl}"
 //    				build(job: "eida-e2e-tests/master", parameters: [string(name: 'testURL', value: "${appTestUrl}"),string(name: 'kcHost', value: "${keycloak_url}"),booleanParam(name: 'is_e2e', value: "true")])
     			}
