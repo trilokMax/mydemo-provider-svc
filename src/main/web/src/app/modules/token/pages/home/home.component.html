@@ -1,0 +1,49 @@
+<div class="container-fluid">
+	<div class="row justify-content-md-center">
+		<div class="col-lg-3">
+
+			<app-welcome></app-welcome>
+
+		</div>
+
+		<div class="col-lg-9">
+
+			<app-minimum-token-info></app-minimum-token-info>
+
+			<app-authentication-info [token]="token"></app-authentication-info>
+
+			<div class="row bottom">
+
+				<div class="col-lg-6">
+
+					<app-suggested-claims [token]="token" [claims]="claimsSet1"></app-suggested-claims>
+
+				</div>
+
+				<div class="col-lg-6">
+
+					<app-suggested-claims [token]="token" [claims]="claimsSet2"></app-suggested-claims>
+					
+				</div>
+
+			</div>
+			
+		</div>
+
+	</div>
+
+	<div class="row">
+		
+		<div class="col-lg-9 offset-lg-3">
+
+			<div class="details">
+
+				<a routerLink="detail" class="btn btn-info gradient">Go to Details Page</a>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>

@@ -1,0 +1,6 @@
+<h2>Highlighted the suggested claims to display based on the standard scope requested: openid, profile, email</h2>
+<div class="claims">
+	<div class="claim" *ngFor="let item of parsedClaims">
+		<span>"{{item.name}}":</span><span>{{item.value}}</span>
+	</div>
+</div>

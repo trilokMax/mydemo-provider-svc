@@ -1,0 +1,19 @@
+@import '~src/scss_variables.scss';
+
+:host {
+	word-break: break-all;
+	background-color: white;
+	display: block;
+	padding: 30px;
+	font-size: 14px;
+	height: calc(100% - 50px);
+}
+.header {
+	color: $info;
+}
+.payload {
+	color: $secondary;
+}
+.signature {
+	color: $info;
+}

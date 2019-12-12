@@ -1,0 +1,14 @@
+@import '~src/scss_variables.scss';
+
+.bottom > div {
+	padding-top: 30px;
+}
+
+.details {
+	width: 100%;
+	text-align: center;
+	a.btn {
+		width: 50%;
+		margin-top: 30px;
+	}
+}

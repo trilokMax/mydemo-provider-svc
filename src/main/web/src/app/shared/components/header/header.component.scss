@@ -1,0 +1,33 @@
+@import '~src/scss_variables.scss';
+
+header {
+	background-color: $primary;
+	a, a:focus, a:hover, button {
+		color: white;
+	}
+	.navbar {
+		padding: 8px 50px;
+	}
+	.navbar-brand {
+		padding: 0;
+	}
+	.nav-link.active, .nav-link:hover {
+		text-decoration: underline;
+	}
+	@media (min-width: 992px) {
+		.nav-link + .nav-link:before{
+			content: "";
+			height: 12px;
+			width: 1px;
+			background-color: white;
+			display: inline-block;
+			margin-right: 1rem;
+		}
+	}
+	.nav-link .fa {
+		margin-right: 5px;
+	}
+}
+img {
+	width: 150px;
+}

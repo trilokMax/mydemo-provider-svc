@@ -1,0 +1,46 @@
+@import '~src/scss_variables.scss';
+
+:host > div {
+	font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+    padding-top: 20px;
+	display: block;
+	background-color: white;
+	margin-top: 30px;
+}
+
+h2 {
+	color: $primary;
+	font-size: 16px;
+	padding: 0 20px 10px 20px;
+	border-bottom: 1px solid #ccc;
+	width: 100%;
+	text-align: center;
+}
+
+h3 {
+	color: $secondary;
+	font-size: 14px;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #ccc;
+	width: 100%;
+}
+
+.body {
+	> div {
+		div {
+			padding: 20px;
+			span {
+				color: rgba(0,0,0,0.6);
+				display: table-cell;
+				padding-right: 5px;
+				+ span, &.string {
+					padding-right: 0;
+					color: $secondary;
+					word-break: break-all;
+				}
+			}
+		}
+	}
+}

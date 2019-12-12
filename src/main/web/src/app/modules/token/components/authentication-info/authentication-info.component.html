@@ -1,0 +1,23 @@
+<div *ngIf="isDefined">
+	<h2>Authentication Type</h2>
+	<div class="row body">
+		<div class="col-lg-4">
+			<div>
+				<h3>Raw Claim</h3>
+				<span>"authType":</span><span>{{token.payload.decoded.authType}}</span>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div>
+				<h3>Type</h3>
+				<span>{{(token.payload.decoded.authType | authType).type}}</span>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div>
+				<h3>Description</h3>
+				<span>{{(token.payload.decoded.authType | authType).description}}</span>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,13 @@
+<div>
+	<h3>{{title}}</h3>
+	<div class="claims">
+		<div class="claim" *ngIf="isString; else allClaims">
+			<span class="string">{{tokenPart.decoded}}</span>
+		</div>
+	</div>
+</div>
+<ng-template #allClaims>
+	<div class="claim" *ngFor="let item of tokenPart.decoded | kvp">
+		<span>"{{item.key}}":</span><span>{{item.value}}</span>
+	</div>
+</ng-template>

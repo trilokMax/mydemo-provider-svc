@@ -1,0 +1,35 @@
+<div class="container-fluid">
+	<div class="row justify-content-md-center">
+
+		<div class="col-lg-3 left">
+
+			<app-welcome></app-welcome>
+
+		</div>
+
+		<div class="col-lg-4">
+
+			<h2>Encoded</h2>
+
+			<app-token-info [token]="token"></app-token-info>
+			
+		</div>
+
+		<div class="col-lg-5">
+
+			<h2>Decoded</h2>
+
+			<div class="details">
+
+				<app-token-claims title="Header" [tokenPart]="token.header"></app-token-claims>
+
+				<app-token-claims title="Payload" [tokenPart]="token.payload"></app-token-claims>
+
+				<app-token-claims title="Signature" [tokenPart]="token.signature"></app-token-claims>
+
+			</div>
+			
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,91 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.8.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+	id 'org.sonarqube' version '2.8'
+	id 'jacoco'
+	id 'org.owasp.dependencycheck' version '5.2.2'
+
+}
+
+group = 'com.eida.services'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('springCloudVersion', "Greenwich.SR3")
+}
+
+
+processResources {
+	  dependsOn "buildAngular"
+ }
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+	extendsFrom developmentOnly
+	}
+}
+ 
+dependencies {
+	compile group: 'javax.inject', name: 'javax.inject', version: '1'
+	compile 'com.fasterxml.jackson.core:jackson-core:2.10.0'
+	compile 'com.fasterxml.jackson.core:jackson-annotations:2.10.0'
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.10.0'
+
+	implementation 'org.springframework.cloud:spring-cloud-starter-consul-config'
+	implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-jwt'
+	implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+def webappDir = "$projectDir/src/main/web"
+sourceSets {
+	main {
+		resources {
+			srcDirs = ["$webappDir/dist", "$projectDir/src/main/resources"]
+		}
+	}
+}
+
+task buildAngular(type:Exec) {
+	// installAngular should be run prior to this task
+	dependsOn "installAngular"
+	workingDir "$webappDir"
+	inputs.dir "$webappDir"
+	// Add task to the standard build group
+	group = BasePlugin.BUILD_GROUP
+	// ng doesn't exist as a file in windows -> ng.cmd
+	if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
+		commandLine "ng.cmd", "build", "--prod"
+	} else {
+		commandLine "ng", "build", "--prod"
+	}
+}
+ 
+task installAngular(type:Exec) {
+	workingDir "$webappDir"
+	inputs.dir "$webappDir"
+	group = BasePlugin.BUILD_GROUP
+	if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
+		commandLine "npm.cmd", "install"
+	} else {
+		commandLine "npm", "install"
+	}
+}

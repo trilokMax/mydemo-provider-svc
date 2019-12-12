@@ -1,0 +1,40 @@
+spring:
+  profiles:.active: default
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: eida-provider-svc
+
+server:
+  port: 8081
+
+logging.file: /var/log/provider.log     
+logging.level:
+  org.springframework.security: INFO
+---
+spring:
+  profiles: default
+rest:
+  security:
+    issuer-uri: http://localhost:9080/auth/realms/eida
+security:
+  oauth2:
+    resource:
+      user-info-uri: ${rest.security.issuer-uri}/protocol/openid-connect/userinfo
+      token-info-uri: ${rest.security.issuer-uri}/protocol/openid-connect/token/introspect
+      jwk:
+        key-set-uri: ${rest.security.issuer-uri}/protocol/openid-connect/certs
+
+---
+spring:
+  profiles:  dev, test, prod
+rest:
+  security:
+    issuer-uri: ${keycloak.auth.server.url}/auth/realms/eida
+security:
+  oauth2:
+    resource:
+      user-info-uri: ${rest.security.issuer-uri}/protocol/openid-connect/userinfo
+      token-info-uri: ${rest.security.issuer-uri}/protocol/openid-connect/token/introspect
+      jwk:
+        key-set-uri: ${rest.security.issuer-uri}/protocol/openid-connect/certs

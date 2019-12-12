@@ -1,0 +1,27 @@
+@import '~src/scss_variables.scss';
+
+:host {
+	font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+    padding: 20px 0;
+	display: block;
+	background-color: white;
+}
+
+h1 {
+	color: $primary;
+	font-size: 18px;
+	padding: 0 20px 10px 20px;
+	border-bottom: 1px solid #ccc;
+	width: 100%;
+	text-align: center;
+}
+
+ul {
+	margin-left: 5px;
+	margin-bottom: 0;
+}
+
+i {
+	margin-left: 30px;
+}
